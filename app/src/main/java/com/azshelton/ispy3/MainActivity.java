@@ -9,39 +9,40 @@ import android.widget.CompoundButton;
 import android.widget.ToggleButton;
 
 public class MainActivity extends AppCompatActivity {
-
+    private ToggleButton advance;
+    private ToggleButton notification;
+    private Button logout;
+    private int notify_on = 1;
+    public final static String EXTRA_MESSAGE = "com.example.myfirstapp.MESSAGE";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        final ToggleButton advance = (ToggleButton) findViewById(R.id.toggleAdvance);
-        final ToggleButton notification = (ToggleButton) findViewById(R.id.toggleNotification);
-        final Button logout = (Button) findViewById(R.id.buttonLogOut);
-
-        advance.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-                    notification.setVisibility(buttonView.VISIBLE);
-                    logout.setVisibility(buttonView.VISIBLE);
-                } else {
-                    notification.setVisibility(buttonView.INVISIBLE);
-                    logout.setVisibility(buttonView.INVISIBLE);
-                }
-            }
-        });
-
-        notification.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-
-                } else {
-
-                }
-            }
-        });
+        advance = (ToggleButton) findViewById(R.id.toggleAdvance);
+        notification = (ToggleButton) findViewById(R.id.toggleNotification);
+        logout = (Button) findViewById(R.id.buttonLogOut);
     }
     public void onClickFeeds(View v){
         Intent mintent = new Intent(MainActivity.this, ModifyFeed.class);
         startActivity(mintent);
     }
+    public void onClickAdvanced(View v)
+    {
+        if (advance.isChecked()) {
+            notification.setVisibility(notification.VISIBLE);
+            logout.setVisibility(notification.VISIBLE);
+        } else {
+            notification.setVisibility(notification.INVISIBLE);
+            logout.setVisibility(notification.INVISIBLE);
+        }
+    }
+    public void onClickNotify(View v)
+    {
+        notify_on += 1;
+    }
+    public boolean notificationsOn()
+    {
+        return (notify_on % 2 == 1);
+    }
+
 }

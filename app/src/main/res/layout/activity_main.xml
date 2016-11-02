@@ -18,50 +18,52 @@
         android:id="@+id/toggleNotification"
         android:textOff="notification Off"
         android:textOn="Notification On"
-        android:layout_width="150dp"
+        android:onClick="onClickNotify"
+        android:layout_width="match_parent"
         android:visibility="invisible"
         android:textColorLink="@color/colorAccent" />
 
+    <Button
+        android:text="Video Feeds"
+        android:id="@+id/buttonViewFeeds"
+        android:textSize="20sp"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_below="@+id/textView"
+        android:layout_alignStart="@+id/toggleAdvance"
+        android:onClick="onClickFeeds" />
+
+    <Button
+        android:text="Logout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/buttonLogOut"
+        android:visibility="invisible"
+        android:layout_below="@+id/toggleNotification"
+        android:layout_centerHorizontal="true" />
+
+    <ToggleButton
+        android:text="ToggleButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/toggleAdvance"
+        android:textOn="Advance Options"
+        android:textOff="Advance Options"
+        android:textSize="20sp"
+        android:onClick="onClickAdvanced"
+        android:layout_below = "@+id/buttonViewFeeds"
+        android:layout_centerHorizontal = "true"/>
+
     <TextView
         android:text="Welcome To iSpy"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/textView"
         android:textAlignment="center"
         android:textStyle="normal|bold"
         android:textAllCaps="false"
         android:textSize="40sp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
-
-    <Button
-        android:text="Video Feeds"
-        android:id="@+id/buttonViewFeeds"
-        android:textSize="20sp"
-        android:layout_width="250dp"
-        android:layout_height="200dp"
-        android:layout_below="@+id/textView"
-        android:layout_alignStart="@+id/toggleAdvance"
-        android:onClick="onClickFeeds" />
-
-    <ToggleButton
-        android:text="ToggleButton"
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/toggleAdvance"
-        android:textOn="Advance Options"
-        android:textOff="Advance Options"
-        android:textSize="20sp"
-        android:layout_below="@+id/buttonViewFeeds"
-        android:layout_centerHorizontal="true" />
-
-    <Button
-        android:text="Logout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/buttonLogOut"
-        android:visibility="invisible"
-        android:layout_below="@+id/toggleNotification"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignParentTop = "true"
+        android:layout_centerHorizontal = "true"/>
 
 </RelativeLayout>
