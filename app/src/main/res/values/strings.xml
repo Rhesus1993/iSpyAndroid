@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">iSpy3</string>
+    <string name="app_name">iSpyYou</string>
 
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>
