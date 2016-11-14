@@ -41,7 +41,9 @@
                     android:hint="@string/prompt_email"
                     android:inputType="textEmailAddress"
                     android:maxLines="1"
-                    android:singleLine="true" />
+                    android:singleLine="true"
+                    android:completionHint = "test@nau.edu"
+                    android:text = "test@nau.edu"/>
 
             </android.support.design.widget.TextInputLayout>
 
@@ -59,6 +61,8 @@
                     android:imeOptions="actionUnspecified"
                     android:inputType="textPassword"
                     android:maxLines="1"
+                    android:completionHint = "test@nau.edu"
+                    android:text = "test@nau.edu"
                     android:singleLine="true" />
 
             </android.support.design.widget.TextInputLayout>
