@@ -88,6 +88,13 @@ public class ModifyFeed extends AppCompatActivity {
                     startActivity(mintent);
                 }
             });
+            btn.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View view) {
+                    btn.setVisibility(View.GONE);
+                    return true;
+                }
+            });
             //adds buttons to the display
             bl.addView(btn);
             buttonLayout.addView(bl);
