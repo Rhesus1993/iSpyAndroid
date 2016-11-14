@@ -31,7 +31,8 @@
         android:layout_height="200dp"
         android:layout_below="@+id/textView"
         android:layout_alignStart="@+id/toggleAdvance"
-        android:onClick="onClickFeeds" />
+        android:onClick="onClickFeeds"
+        />
 
     <Button
         android:text="Logout"
@@ -40,7 +41,8 @@
         android:id="@+id/buttonLogOut"
         android:visibility="invisible"
         android:layout_below="@+id/toggleNotification"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:onClick="onClickLogout" />
 
     <ToggleButton
         android:text="ToggleButton"

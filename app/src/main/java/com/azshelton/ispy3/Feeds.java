@@ -20,48 +20,39 @@ public class Feeds extends AppCompatActivity {
         setContentView(R.layout.activity_feeds);
         final VideoView videoView = (VideoView) findViewById(R.id.videoView);
         final TextView textView = (TextView) findViewById(R.id.textView2);
-        Intent intent =getIntent();
+        Intent intent = getIntent();
         String str = intent.getStringExtra("location");
         textView.setText(str);
-        String video = "";
+        String video;
 
-
-        String location = textView.getText().toString();
-        if (location == "Kitchen"){
-            video = "https://www.cefns.nau.edu/~rs854/videos/Kitchen.mp4";
-            videoView.setVideoPath(video);
+        if(str == "Dining Room"){
+           video = "https://www.cefns.nau.edu/~rs854/videos/Cat.mp4";
         }
-        if (location == "Dining Room"){
+        if(str == "Kitchen"){
             video = "https://www.cefns.nau.edu/~rs854/videos/Kitchen.mp4";
-            videoView.setVideoPath(video);
         }
-        if (location == "Patio"){
+        if(str == "Patio"){
             video = "https://www.cefns.nau.edu/~rs854/videos/Patio.mp4";
-            videoView.setVideoPath(video);
         }
-        if (location =="Hall"){
-            video =  "https://www.cefns.nau.edu/~rs854/videos/Hall.mp4";
-            videoView.setVideoPath(video);
+        if(str == "Living Room"){
+            video = "https://www.cefns.nau.edu/~rs854/videos/LivingRoom.mp4";
         }
-        if (location =="Entry"){
+        if(str == "Entry"){
             video = "https://www.cefns.nau.edu/~rs854/videos/Entry.mp4";
-            videoView.setVideoPath(video);
+        }
+        if(str == "Stairway"){
+            video = "https://www.cefns.nau.edu/~rs854/videos/Hall.mp4";
         }else{
             video = "https://www.cefns.nau.edu/~rs854/videos/Cat.mp4";
-            videoView.setVideoPath(video);
         }
+
 
         MediaController mediaController = new MediaController(this);
         mediaController.setAnchorView(videoView);
         videoView.setMediaController(mediaController);
 
-        videoView.start();
+        videoView.setVideoPath(video);
 
-        videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
-            @Override
-            public void onPrepared(MediaPlayer mp) {
-                mp.setLooping(true);
-            }
-        });
+        videoView.start();
     }
 }

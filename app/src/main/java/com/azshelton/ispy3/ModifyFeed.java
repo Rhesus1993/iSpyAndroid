@@ -21,70 +21,69 @@ import java.util.ArrayList;
 
 public class ModifyFeed extends AppCompatActivity {
     public final static String EXTRA_MESSAGE = "com.example.myfirstapp.MESSAGE";
-    private ToggleButton addL;
+    private Button addL;
     private Button remove;
     private Spinner location;
-    String[] videoLocations;
-    int count, i;
-    Button b1[];
+    private int count;
+    private String [] items = new String[]{"Dining Room", "Kitchen", "Patio", "Living Room", "Entry", "Stairway"};
+
+    ArrayList<String> videoLocation;
     String current;
-
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_modify_feed);
         remove = (Button)findViewById(R.id.Remove);
-        addL = (ToggleButton)findViewById(R.id.toggleButton);
+        addL = (Button)findViewById(R.id.toggleButton);
         location = (Spinner)findViewById(R.id.spinner1);
-        LinearLayout buttonLayout = (LinearLayout)findViewById(R.id.layout1);
-
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.TEXT_ALIGNMENT_CENTER,LinearLayout.VERTICAL);
 
         //drop down menu
-        String[] items = new String[]{"Dining Room", "Kitchen", "Patio", "Living Room", "Entry", "Stairway"};
+
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, items);
         location.setAdapter(adapter);
-
-        videoLocations = new String[count];
-        for(int i = 0; i < videoLocations.length; i++){
-            count++;
-            b1[i] = new Button(this);
-            b1[i].setId(i);
-            b1[i].setText(videoLocations[i]);
-            b1[i].setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
-            buttonLayout.addView(b1[i]);
-        }
-
 
     }
 
     public void onClickAdd(View v)
     {
-        if (addL.isChecked()){
-            location.setVisibility(View.VISIBLE);
-            current = location.toString();
-            videoLocations[count] = current;
+        final LinearLayout buttonLayout = (LinearLayout)findViewById(R.id.layout1);
+        videoLocation = new ArrayList<String>();
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,LinearLayout.LayoutParams.WRAP_CONTENT);
+
+        current = location.getSelectedItem().toString();
+        videoLocation.add(current);
+        System.out.println(videoLocation);
 
 
-        }else{
-            location.setVisibility(View.INVISIBLE);
+        for (int i = 0; i < videoLocation.size(); i++){
+            count++;
+            LinearLayout bl = new LinearLayout(this);
+            bl.setOrientation(LinearLayout.HORIZONTAL);
+            final Button btn = new Button(this);
+            btn.setId(count);
+            System.out.println(btn.getId());
+            btn.setText(videoLocation.get(i));
+            btn.setWidth(1000);
+            btn.setHeight(100);
+            btn.setLayoutParams(params);
 
+            btn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Button location = (Button) findViewById(btn.getId());
+                    Intent mintent = new Intent(ModifyFeed.this, Feeds.class);
+                    mintent.putExtra("location",location.getText().toString());
+                    startActivity(mintent);
+                }
+            });
+
+            bl.addView(btn);
+            buttonLayout.addView(bl);
         }
     }
-
-
-    public void onClickRemove(View v)
-    {
-        //TODO: Make array of buttons and have this remove the last one. Then set the onClickEvent in xml
-    }
-
-    public void onClickView(View v){
-        //Button location = (Button) findViewById(R.id.btn1);
-        //Intent mintent = new Intent(ModifyFeed.this, Feeds.class);
-        //mintent.putExtra("location",location.getText().toString());
-        //startActivity(mintent);
+    public void onClickRemove(View v){
+        //TODO
     }
 }

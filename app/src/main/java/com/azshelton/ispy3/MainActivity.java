@@ -44,5 +44,9 @@ public class MainActivity extends AppCompatActivity {
     {
         return (notify_on % 2 == 1);
     }
+    public void onClickLogout(View v){
+        Intent mintent = new Intent(MainActivity.this,LoginActivity.class);
+        startActivity(mintent);
+    }
 
 }
