@@ -28,11 +28,10 @@
         android:id="@+id/buttonViewFeeds"
         android:textSize="20sp"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_below="@+id/textView"
         android:layout_alignStart="@+id/toggleAdvance"
         android:onClick="onClickFeeds"
-        />
+        android:layout_height="300dp"
+        android:layout_below="@+id/textView" />
 
     <Button
         android:text="Logout"
@@ -43,18 +42,6 @@
         android:layout_below="@+id/toggleNotification"
         android:layout_centerHorizontal="true"
         android:onClick="onClickLogout" />
-
-    <ToggleButton
-        android:text="ToggleButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/toggleAdvance"
-        android:textOn="Advance Options"
-        android:textOff="Advance Options"
-        android:textSize="20sp"
-        android:onClick="onClickAdvanced"
-        android:layout_below = "@+id/buttonViewFeeds"
-        android:layout_centerHorizontal = "true"/>
 
     <TextView
         android:text="Welcome To iSpy"
@@ -67,5 +54,17 @@
         android:textSize="40sp"
         android:layout_alignParentTop = "true"
         android:layout_centerHorizontal = "true"/>
+
+    <ToggleButton
+        android:text="ToggleButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/toggleAdvance"
+        android:textOn="Advance Options"
+        android:textOff="Advance Options"
+        android:textSize="20sp"
+        android:onClick="onClickAdvanced"
+        android:layout_below="@+id/buttonViewFeeds"
+        android:layout_alignParentStart="true" />
 
 </RelativeLayout>

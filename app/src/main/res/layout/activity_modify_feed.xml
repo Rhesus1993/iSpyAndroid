@@ -18,8 +18,7 @@
         android:id="@+id/Remove"
         android:background="@android:drawable/ic_delete"
         android:layout_alignParentBottom = "true"
-        android:layout_alignParentStart = "true"
-        android:onClick="onClickRemove" />
+        android:layout_alignParentStart = "true" />
 
 
     <Button

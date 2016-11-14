@@ -44,19 +44,28 @@ public class ModifyFeed extends AppCompatActivity {
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, items);
         location.setAdapter(adapter);
 
-    }
+        //remove views from feed
+        remove.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
+            }
+        });
+
+    }
+    //adds views to feed
     public void onClickAdd(View v)
     {
         final LinearLayout buttonLayout = (LinearLayout)findViewById(R.id.layout1);
         videoLocation = new ArrayList<String>();
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,LinearLayout.LayoutParams.WRAP_CONTENT);
 
+        //gets contents of drop down and adds to array
         current = location.getSelectedItem().toString();
         videoLocation.add(current);
         System.out.println(videoLocation);
 
-
+        //creates buttons from array
         for (int i = 0; i < videoLocation.size(); i++){
             count++;
             LinearLayout bl = new LinearLayout(this);
@@ -72,13 +81,14 @@ public class ModifyFeed extends AppCompatActivity {
             btn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    //creates a listener to open the video feed for the corresponding button
                     Button location = (Button) findViewById(btn.getId());
                     Intent mintent = new Intent(ModifyFeed.this, Feeds.class);
                     mintent.putExtra("location",location.getText().toString());
                     startActivity(mintent);
                 }
             });
-
+            //adds buttons to the display
             bl.addView(btn);
             buttonLayout.addView(bl);
         }
