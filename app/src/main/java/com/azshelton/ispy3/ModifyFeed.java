@@ -53,7 +53,7 @@ public class ModifyFeed extends AppCompatActivity {
         final RadioButton radioYes = (RadioButton)findViewById(R.id.Radioyes);
 
         videoLocation = new ArrayList<String>();
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,LinearLayout.LayoutParams.WRAP_CONTENT);
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,LinearLayout.LayoutParams.MATCH_PARENT);
 
         //gets contents of drop down and adds to array
         current = location.getSelectedItem().toString();
@@ -69,8 +69,8 @@ public class ModifyFeed extends AppCompatActivity {
             btn.setId(count);
             System.out.println(btn.getId());
             btn.setText(videoLocation.get(i));
-            btn.setWidth(1000);
-            btn.setHeight(100);
+            //btn.setWidth(1000);
+            //btn.setHeight(100);
             btn.setLayoutParams(params);
 
             btn.setOnClickListener(new View.OnClickListener() {

@@ -28,7 +28,7 @@ public class Feeds extends AppCompatActivity {
         String temp = str.toString().toLowerCase();
 
         if(temp.equals("dining room")){
-            video="https://www.cefns.nau.edu/~rs854/videos/Hall.mp4";
+            video="https://www.cefns.nau.edu/~rs854/videos/DiningRoom.mp4";
         }
         if(temp.equals("kitchen")){
             video="https://www.cefns.nau.edu/~rs854/videos/Kitchen.mp4";
@@ -43,7 +43,7 @@ public class Feeds extends AppCompatActivity {
             video = "https://www.cefns.nau.edu/~rs854/videos/Entry.mp4";
         }
         if(temp.equals("stairway")){
-            video = "https://www.cefns.nau.edu/~rs854/videos/Hall.mp4";
+            video = "https://www.cefns.nau.edu/~rs854/videos/Stairway.mp4";
         }
 
         Uri uri=Uri.parse(video);
