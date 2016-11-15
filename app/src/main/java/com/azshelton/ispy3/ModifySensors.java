@@ -31,7 +31,7 @@ public class ModifySensors extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_modify_sensor);
+        setContentView(R.layout.activity_modify_sensors);
         location = (Spinner)findViewById(R.id.spinner1);
 
         //drop down menu
