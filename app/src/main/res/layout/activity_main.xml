@@ -14,11 +14,12 @@
         android:text="Video Feeds"
         android:id="@+id/buttonViewFeeds"
         android:textSize="20sp"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_alignStart="@+id/toggleAdvance"
         android:onClick="onClickFeeds"
         android:layout_height="wrap_content"
         android:layout_below="@+id/textView"
+        android:layout_toStartOf="@+id/buttonViewSensor"
         android:layout_above="@+id/toggleAdvance" />
 
     <TextView
@@ -146,5 +147,16 @@
         android:onClick="onClickAbout"
         android:layout_above="@+id/buttonLogOut"
         android:layout_alignParentStart="true" />
+
+    <Button
+        android:text="Motion Sensors"
+        android:id="@+id/buttonViewSensor"
+        android:textSize="20sp"
+        android:onClick="onClickSensor"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView"
+        android:layout_alignParentEnd="true"
+        android:layout_above="@+id/toggleAdvance"
+        android:layout_width="wrap_content" />
 
 </RelativeLayout>

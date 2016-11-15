@@ -18,6 +18,7 @@ import android.widget.ToggleButton;
 
 public class MainActivity extends AppCompatActivity {
     private Button feed;
+    private Button sensor;
     private ToggleButton advance;
     private ToggleButton notification;
     private ToggleButton about;
@@ -37,12 +38,19 @@ public class MainActivity extends AppCompatActivity {
         logout = (Button) findViewById(R.id.buttonLogOut);
         about = (ToggleButton) findViewById(R.id.toggleButtonAbout);
         aboutscroll = (ScrollView)findViewById(R.id.aboutView);
+        sensor = (Button)findViewById(R.id.buttonViewSensor);
 
 
     }
     public void onClickFeeds(View v){
         System.out.println("notify_on " + MainActivity.notify_on);
         Intent myIntent = new Intent(MainActivity.this, ModifyFeed.class);
+        myIntent.putExtra("identify_on", MainActivity.notify_on);
+        startActivity(myIntent);
+    }
+    public void onClickSensor(View v){
+        System.out.println("notify_on " + MainActivity.notify_on);
+        Intent myIntent = new Intent(MainActivity.this, ModifySensors.class);
         myIntent.putExtra("identify_on", MainActivity.notify_on);
         startActivity(myIntent);
     }
@@ -63,11 +71,13 @@ public class MainActivity extends AppCompatActivity {
         if (about.isChecked()){
             aboutscroll.setVisibility(View.VISIBLE);
             feed.setVisibility(View.INVISIBLE);
+            sensor.setVisibility(View.INVISIBLE);
 
 
         }else{
             aboutscroll.setVisibility(View.INVISIBLE);
             feed.setVisibility(View.VISIBLE);
+            sensor.setVisibility(View.VISIBLE);
 
         }
     }
