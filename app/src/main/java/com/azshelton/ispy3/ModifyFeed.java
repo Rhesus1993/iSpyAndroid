@@ -23,7 +23,6 @@ import java.util.ArrayList;
 
 public class ModifyFeed extends AppCompatActivity {
     public final static String EXTRA_MESSAGE = "com.example.myfirstapp.MESSAGE";
-    private Button addView;
     private Spinner location;
     private int count;
     private String [] items = new String[]{"Dining Room", "Kitchen", "Patio", "Living Room", "Entry", "Stairway"};
@@ -37,7 +36,6 @@ public class ModifyFeed extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_modify_feed);
-        addView = (Button)findViewById(R.id.toggleButton);
         location = (Spinner)findViewById(R.id.spinner1);
 
         //drop down menu
