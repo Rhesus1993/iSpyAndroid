@@ -12,6 +12,8 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.ToggleButton;
 
@@ -21,11 +23,11 @@ import java.util.ArrayList;
 
 public class ModifyFeed extends AppCompatActivity {
     public final static String EXTRA_MESSAGE = "com.example.myfirstapp.MESSAGE";
-    private Button addL;
-    private Button remove;
+    private Button addView;
     private Spinner location;
     private int count;
     private String [] items = new String[]{"Dining Room", "Kitchen", "Patio", "Living Room", "Entry", "Stairway"};
+    private RadioGroup radio;
 
     ArrayList<String> videoLocation;
     String current;
@@ -35,8 +37,7 @@ public class ModifyFeed extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_modify_feed);
-        remove = (Button)findViewById(R.id.Remove);
-        addL = (Button)findViewById(R.id.toggleButton);
+        addView = (Button)findViewById(R.id.toggleButton);
         location = (Spinner)findViewById(R.id.spinner1);
 
         //drop down menu
@@ -44,19 +45,15 @@ public class ModifyFeed extends AppCompatActivity {
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, items);
         location.setAdapter(adapter);
 
-        //remove views from feed
-        remove.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-            }
-        });
-
     }
     //adds views to feed
     public void onClickAdd(View v)
     {
         final LinearLayout buttonLayout = (LinearLayout)findViewById(R.id.layout1);
+        final RadioGroup radio = (RadioGroup)findViewById(R.id.popup);
+        final RadioButton radioNo = (RadioButton)findViewById(R.id.Radiono);
+        final RadioButton radioYes = (RadioButton)findViewById(R.id.Radioyes);
+
         videoLocation = new ArrayList<String>();
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,LinearLayout.LayoutParams.WRAP_CONTENT);
 
@@ -88,10 +85,29 @@ public class ModifyFeed extends AppCompatActivity {
                     startActivity(mintent);
                 }
             });
+            //for removing a view
             btn.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public boolean onLongClick(View view) {
-                    btn.setVisibility(View.GONE);
+                    radio.setVisibility(View.VISIBLE);
+                    radio.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+                        @Override
+                        //checks if the users really wants to remove the view
+                        public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                            switch(i){
+                                case R.id.Radioyes:
+                                    btn.setVisibility(View.GONE);
+                                    radio.setVisibility(View.INVISIBLE);
+                                    radio.clearCheck();
+                                    //break;
+                                case R.id.Radiono:
+                                    radio.setVisibility(View.INVISIBLE);
+                                    radio.clearCheck();
+                                    //break;
+                            }
+
+                        }
+                    });
                     return true;
                 }
             });
@@ -99,8 +115,5 @@ public class ModifyFeed extends AppCompatActivity {
             bl.addView(btn);
             buttonLayout.addView(bl);
         }
-    }
-    public void onClickRemove(View v){
-        //TODO
     }
 }
