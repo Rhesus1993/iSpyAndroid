@@ -14,6 +14,7 @@ import static com.azshelton.ispy3.R.id.textView;
 
 public class Feeds extends AppCompatActivity {
     public final static String EXTRA_MESSAGE = "com.example.myfirstapp.MESSAGE";
+    private String video;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,35 +24,36 @@ public class Feeds extends AppCompatActivity {
         Intent intent = getIntent();
         String str = intent.getStringExtra("location");
         textView.setText(str);
-        String video;
 
-        if(str == "Dining Room"){
-           video = "https://www.cefns.nau.edu/~rs854/videos/Cat.mp4";
+        String temp = str.toString().toLowerCase();
+
+        if(temp.equals("dining room")){
+            video="https://www.cefns.nau.edu/~rs854/videos/Hall.mp4";
         }
-        if(str == "Kitchen"){
-            video = "https://www.cefns.nau.edu/~rs854/videos/Kitchen.mp4";
+        if(temp.equals("kitchen")){
+            video="https://www.cefns.nau.edu/~rs854/videos/Kitchen.mp4";
         }
-        if(str == "Patio"){
+        if(temp.equals("patio")){
             video = "https://www.cefns.nau.edu/~rs854/videos/Patio.mp4";
         }
-        if(str == "Living Room"){
+        if(temp.equals("living room")){
             video = "https://www.cefns.nau.edu/~rs854/videos/LivingRoom.mp4";
         }
-        if(str == "Entry"){
+        if(temp.equals("entry")){
             video = "https://www.cefns.nau.edu/~rs854/videos/Entry.mp4";
         }
-        if(str == "Stairway"){
+        if(temp.equals("stairway")){
             video = "https://www.cefns.nau.edu/~rs854/videos/Hall.mp4";
-        }else{
-            video = "https://www.cefns.nau.edu/~rs854/videos/Cat.mp4";
         }
 
+        Uri uri=Uri.parse(video);
 
+        System.out.println(uri);
         MediaController mediaController = new MediaController(this);
         mediaController.setAnchorView(videoView);
         videoView.setMediaController(mediaController);
 
-        videoView.setVideoPath(video);
+        videoView.setVideoURI(uri);
 
         videoView.start();
     }
