@@ -47,18 +47,6 @@
         android:text="ToggleButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/toggleButtonAbout"
-        android:layout_above="@+id/buttonLogOut"
-        android:layout_alignParentStart="true"
-        android:textOff="About Us"
-        android:textOn="About Us"
-        android:visibility="invisible"
-        android:onClick="onClickAbout"/>
-
-    <ToggleButton
-        android:text="ToggleButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:id="@+id/toggleAdvance"
         android:textOn="Advance Options"
         android:textOff="Advance Options"
@@ -73,7 +61,7 @@
         android:id="@+id/toggleNotification"
         android:textOff="notification Off"
         android:textOn="Notification On"
-        android:onClick="onClickNotify"
+        android:onClick="onClickNotification"
         android:layout_width="match_parent"
         android:visibility="invisible"
         android:textColorLink="@color/colorAccent"
@@ -146,5 +134,17 @@
                 android:textAlignment="center" />
         </LinearLayout>
     </ScrollView>
+
+    <ToggleButton
+        android:text="ToggleButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/toggleButtonAbout"
+        android:textOff="About Us"
+        android:textOn="About Us"
+        android:visibility="invisible"
+        android:onClick="onClickAbout"
+        android:layout_above="@+id/buttonLogOut"
+        android:layout_alignParentStart="true" />
 
 </RelativeLayout>

@@ -1,11 +1,13 @@
 package com.azshelton.ispy3;
 
+import android.app.NotificationManager;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.NotificationCompat;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -23,13 +25,14 @@ import java.util.ArrayList;
 
 public class ModifyFeed extends AppCompatActivity {
     public final static String EXTRA_MESSAGE = "com.example.myfirstapp.MESSAGE";
+    public static int notify_on;
     private Spinner location;
     private int count;
     private String [] items = new String[]{"Dining Room", "Kitchen", "Patio", "Living Room", "Entry", "Stairway"};
     private RadioGroup radio;
-
     ArrayList<String> videoLocation;
     String current;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +45,12 @@ public class ModifyFeed extends AppCompatActivity {
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, items);
         location.setAdapter(adapter);
+
+        Intent mIntent = getIntent();
+        int recInt = mIntent.getIntExtra("identify_on", 0);
+        int temp = recInt;
+        ModifyFeed.notify_on = temp;
+        System.out.println(ModifyFeed.notify_on);
 
     }
     //adds views to feed
@@ -69,8 +78,6 @@ public class ModifyFeed extends AppCompatActivity {
             btn.setId(count);
             System.out.println(btn.getId());
             btn.setText(videoLocation.get(i));
-            //btn.setWidth(1000);
-            //btn.setHeight(100);
             btn.setLayoutParams(params);
 
             btn.setOnClickListener(new View.OnClickListener() {
@@ -97,11 +104,12 @@ public class ModifyFeed extends AppCompatActivity {
                                     btn.setVisibility(View.GONE);
                                     radio.setVisibility(View.INVISIBLE);
                                     radio.clearCheck();
-                                    //break;
+                                    if(notify_on == 1) {
+                                        NotificationRemovedView();
+                                    }
                                 case R.id.Radiono:
                                     radio.setVisibility(View.INVISIBLE);
                                     radio.clearCheck();
-                                    //break;
                             }
 
                         }
@@ -112,6 +120,38 @@ public class ModifyFeed extends AppCompatActivity {
             //adds buttons to the display
             bl.addView(btn);
             buttonLayout.addView(bl);
+            if(notify_on == 1) {
+                NotificationAddedView();
+            }
         }
+
+    }
+    public void NotificationRemovedView() {
+        NotificationCompat.Builder mBuilder =
+                (NotificationCompat.Builder) new NotificationCompat.Builder(this)
+                        .setSmallIcon(R.drawable.security)
+                        .setContentTitle("ISpy Security")
+                        .setContentText("A view was removed from your account");
+
+        // Sets an ID for the notification
+        int mNotificationId = count;
+        // Gets an instance of the NotificationManager service
+        NotificationManager mNotifyMgr = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+        // Builds the notification and issues it.
+        mNotifyMgr.notify(mNotificationId, mBuilder.build());
+    }
+    public void NotificationAddedView() {
+        NotificationCompat.Builder mBuilder =
+                (NotificationCompat.Builder) new NotificationCompat.Builder(this)
+                        .setSmallIcon(R.drawable.security)
+                        .setContentTitle("ISpy Security")
+                        .setContentText("A camera was synced to you account");
+
+        // Sets an ID for the notification
+        int mNotificationId = count;
+        // Gets an instance of the NotificationManager service
+        NotificationManager mNotifyMgr = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+        // Builds the notification and issues it.
+        mNotifyMgr.notify(mNotificationId, mBuilder.build());
     }
 }
