@@ -4,6 +4,7 @@ import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.NotificationCompat;
 import android.view.View;
@@ -144,7 +145,23 @@ public class ModifySensors extends AppCompatActivity {
             if(notify_on == 1) {
                 NotificationAddedView();
             }
+
         }
+        int Tmin = 300000;
+        int Tmax = 3000000;
+        Random rand = new Random();
+        int randomtime = rand.nextInt((Tmax - Tmin) + 1) + Tmin;
+
+        new CountDownTimer(randomtime, 1000) {
+
+            public void onTick(long millisUntilFinished) {
+
+            }
+
+            public void onFinish() {
+                NotificationMotion();
+            }
+        }.start();
 
     }
     public void NotificationRemovedView() {
