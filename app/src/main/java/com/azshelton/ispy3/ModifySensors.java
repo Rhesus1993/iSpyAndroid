@@ -1,6 +1,7 @@
 package com.azshelton.ispy3;
 
 import android.app.NotificationManager;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -12,8 +13,10 @@ import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 
 public class ModifySensors extends AppCompatActivity {
@@ -21,7 +24,7 @@ public class ModifySensors extends AppCompatActivity {
     public static int notify_on;
     private Spinner location;
     private int count;
-    private String [] items = new String[]{"Dining Room", "Kitchen", "Patio", "Living Room", "Entry", "Stairway"};
+    private String [] items = new String[]{"Master Bedroom Window", "Kids Room Window", "Garage Door", "Office Door", "Entry Door", "Back Door"};
     private RadioGroup radio;
     ArrayList<String> videoLocation;
     String current;
@@ -77,10 +80,35 @@ public class ModifySensors extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
                     //creates a listener to open the video feed for the corresponding button
-                    Button location = (Button) findViewById(btn.getId());
-                    Intent mintent = new Intent(ModifySensors.this, Feeds.class);
-                    mintent.putExtra("location",location.getText().toString());
-                    startActivity(mintent);
+                    int min = 1;
+                    int max = 15;
+                    Random rand = new Random();
+                    int randomNum = rand.nextInt((max - min) + 1) + min;
+                    int check = 7;
+                    if(randomNum == check){
+                        Context context = getApplicationContext();
+                        CharSequence text = "Motion Detected";
+                        int duration = Toast.LENGTH_SHORT;
+
+                        Toast toast = Toast.makeText(context, text, duration);
+                        toast.show();
+                        if(ModifySensors.notify_on == 1){
+                            NotificationMotion();
+                        }
+
+
+                    }
+                    if(randomNum != check){
+                        Context context = getApplicationContext();
+                        CharSequence text = "No Motion Detected";
+                        int duration = Toast.LENGTH_SHORT;
+
+                        Toast toast = Toast.makeText(context, text, duration);
+                        toast.show();
+
+                    }
+
+
                 }
             });
             //for removing a view
@@ -139,6 +167,20 @@ public class ModifySensors extends AppCompatActivity {
                         .setSmallIcon(R.drawable.security)
                         .setContentTitle("ISpy Security")
                         .setContentText("A motion sensor was synced to you account");
+
+        // Sets an ID for the notification
+        int mNotificationId = count;
+        // Gets an instance of the NotificationManager service
+        NotificationManager mNotifyMgr = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+        // Builds the notification and issues it.
+        mNotifyMgr.notify(mNotificationId, mBuilder.build());
+    }
+    public void NotificationMotion() {
+        NotificationCompat.Builder mBuilder =
+                (NotificationCompat.Builder) new NotificationCompat.Builder(this)
+                        .setSmallIcon(R.drawable.security)
+                        .setContentTitle("ISpy Security")
+                        .setContentText("Motion was detected");
 
         // Sets an ID for the notification
         int mNotificationId = count;
