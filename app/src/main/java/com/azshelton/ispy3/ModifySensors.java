@@ -21,7 +21,7 @@ public class ModifySensors extends AppCompatActivity {
     public static int notify_on;
     private Spinner location;
     private int count;
-    private String [] items = new String[]{"Master Window", "Kids Room", "Office", "Front Door", "Back Door", "Garage"};
+    private String [] items = new String[]{"Dining Room", "Kitchen", "Patio", "Living Room", "Entry", "Stairway"};
     private RadioGroup radio;
     ArrayList<String> videoLocation;
     String current;
@@ -77,7 +77,10 @@ public class ModifySensors extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
                     //creates a listener to open the video feed for the corresponding button
-                    //TODO random change a notiication is created
+                    Button location = (Button) findViewById(btn.getId());
+                    Intent mintent = new Intent(ModifySensors.this, Feeds.class);
+                    mintent.putExtra("location",location.getText().toString());
+                    startActivity(mintent);
                 }
             });
             //for removing a view
