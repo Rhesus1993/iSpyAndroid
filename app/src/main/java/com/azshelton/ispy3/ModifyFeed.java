@@ -28,7 +28,7 @@ public class ModifyFeed extends AppCompatActivity {
     public static int notify_on;
     private Spinner location;
     private int count;
-    private String [] items = new String[]{"Dining Room", "Kitchen", "Patio", "Living Room", "Entry", "Stairway"};
+    private String [] items = new String[]{"Dining Room", "Kitchen", "Patio", "Living Room", "Entry", "Stairway",};
     private RadioGroup radio;
     ArrayList<String> videoLocation;
     String current;
