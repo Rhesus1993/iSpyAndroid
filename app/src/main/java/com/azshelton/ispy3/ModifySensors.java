@@ -66,6 +66,25 @@ public class ModifySensors extends AppCompatActivity {
         videoLocation.add(current);
         System.out.println(videoLocation);
 
+        int Tmin = 300000;
+        int Tmax = 3000000;
+        Random rand = new Random();
+        int randomtime = rand.nextInt((Tmax - Tmin) + 1) + Tmin;
+        int intTime = randomtime;
+        System.out.println(intTime);
+
+        new CountDownTimer(intTime, 1000) {
+
+            public void onTick(long millisUntilFinished) {
+                System.out.println("timer: " + millisUntilFinished/1000);
+
+            }
+
+            public void onFinish() {
+                NotificationMotion();
+            }
+        }.start();
+.
         //creates buttons from array
         for (int i = 0; i < videoLocation.size(); i++){
             count++;
@@ -147,21 +166,6 @@ public class ModifySensors extends AppCompatActivity {
             }
 
         }
-        int Tmin = 300000;
-        int Tmax = 3000000;
-        Random rand = new Random();
-        int randomtime = rand.nextInt((Tmax - Tmin) + 1) + Tmin;
-
-        new CountDownTimer(randomtime, 1000) {
-
-            public void onTick(long millisUntilFinished) {
-
-            }
-
-            public void onFinish() {
-                NotificationMotion();
-            }
-        }.start();
 
     }
     public void NotificationRemovedView() {
