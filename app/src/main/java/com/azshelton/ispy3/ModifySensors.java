@@ -43,6 +43,7 @@ public class ModifySensors extends AppCompatActivity {
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, items);
         location.setAdapter(adapter);
 
+        //gets notification status
         Intent mIntent = getIntent();
         int recInt = mIntent.getIntExtra("identify_on", 0);
         int temp = recInt;
@@ -50,7 +51,7 @@ public class ModifySensors extends AppCompatActivity {
         System.out.println(ModifySensors.notify_on);
 
     }
-    //adds views to feed
+    //adds sensors to feed
     public void onClickAdd(View v)
     {
         final LinearLayout buttonLayout = (LinearLayout)findViewById(R.id.layout1);
@@ -66,6 +67,8 @@ public class ModifySensors extends AppCompatActivity {
         videoLocation.add(current);
         System.out.println(videoLocation);
 
+
+        //timer for simulated motion detection
         int Tmin = 30000;
         int Tmax = 3000000;
         Random rand = new Random();
@@ -95,21 +98,21 @@ public class ModifySensors extends AppCompatActivity {
             System.out.println(btn.getId());
             btn.setText(videoLocation.get(i));
             btn.setLayoutParams(params);
-
+            //creates a listener to open the video feed for the corresponding button
             btn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    //creates a listener to open the video feed for the corresponding button
                     int min = 1;
                     int max = 15;
                     Random rand = new Random();
                     int randomNum = rand.nextInt((max - min) + 1) + min;
                     int check = 7;
+                    //simulation for motion detection testing using random number generation and value checking
                     if(randomNum == check){
                         Context context = getApplicationContext();
                         CharSequence text = "Motion Detected";
                         int duration = Toast.LENGTH_SHORT;
-
+                        //displays a toast for the results
                         Toast toast = Toast.makeText(context, text, duration);
                         toast.show();
                         if(ModifySensors.notify_on == 1){
@@ -168,6 +171,8 @@ public class ModifySensors extends AppCompatActivity {
         }
 
     }
+
+    //push notification for when a sensor is removed
     public void NotificationRemovedView() {
         NotificationCompat.Builder mBuilder =
                 (NotificationCompat.Builder) new NotificationCompat.Builder(this)
@@ -182,6 +187,7 @@ public class ModifySensors extends AppCompatActivity {
         // Builds the notification and issues it.
         mNotifyMgr.notify(mNotificationId, mBuilder.build());
     }
+    //push notification for when a sensor is added
     public void NotificationAddedView() {
         NotificationCompat.Builder mBuilder =
                 (NotificationCompat.Builder) new NotificationCompat.Builder(this)
@@ -196,6 +202,7 @@ public class ModifySensors extends AppCompatActivity {
         // Builds the notification and issues it.
         mNotifyMgr.notify(mNotificationId, mBuilder.build());
     }
+    //push notification for when motion is detected in a simulation
     public void NotificationMotion() {
         NotificationCompat.Builder mBuilder =
                 (NotificationCompat.Builder) new NotificationCompat.Builder(this)

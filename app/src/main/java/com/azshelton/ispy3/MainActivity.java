@@ -42,18 +42,21 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+    //If user selected Video Feed, directs them to that activity and carries the notification status
     public void onClickFeeds(View v){
         System.out.println("notify_on " + MainActivity.notify_on);
         Intent myIntent = new Intent(MainActivity.this, ModifyFeed.class);
         myIntent.putExtra("identify_on", MainActivity.notify_on);
         startActivity(myIntent);
     }
+    //If user selected Sensor Feed, directs them to that activity and carries the notification status
     public void onClickSensor(View v){
         System.out.println("notify_on " + MainActivity.notify_on);
         Intent myIntent = new Intent(MainActivity.this, ModifySensors.class);
         myIntent.putExtra("identify_on", MainActivity.notify_on);
         startActivity(myIntent);
     }
+    //displays the advance setting options
     public void onClickAdvanced(View v)
     {
         if (advance.isChecked()) {
@@ -66,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
             about.setVisibility(about.INVISIBLE);
         }
     }
-
+    //displays the about view
     public void onClickAbout(View v){
         if (about.isChecked()){
             aboutscroll.setVisibility(View.VISIBLE);
@@ -82,6 +85,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    //enables and disables notifications
     public void onClickNotification(View v){
         if(notification.isChecked()){
             addNotification();
@@ -94,12 +98,13 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    //logout function
     public void onClickLogout(View v){
         Intent myIntent = new Intent(MainActivity.this, LoginActivity.class);
         startActivity(myIntent);
     }
 
-
+    //Push notification for when the notifications are turned on
     public void addNotification() {
         NotificationCompat.Builder mBuilder =
                 (NotificationCompat.Builder) new NotificationCompat.Builder(this)

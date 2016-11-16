@@ -42,10 +42,10 @@ public class ModifyFeed extends AppCompatActivity {
         location = (Spinner)findViewById(R.id.spinner1);
 
         //drop down menu
-
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, items);
         location.setAdapter(adapter);
 
+        //notification status from main activity
         Intent mIntent = getIntent();
         int recInt = mIntent.getIntExtra("identify_on", 0);
         int temp = recInt;
@@ -80,6 +80,7 @@ public class ModifyFeed extends AppCompatActivity {
             btn.setText(videoLocation.get(i));
             btn.setLayoutParams(params);
 
+            //creates a listener for the buttons that are generated dynamically
             btn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -126,6 +127,7 @@ public class ModifyFeed extends AppCompatActivity {
         }
 
     }
+    //push notification for when a camera is removed
     public void NotificationRemovedView() {
         NotificationCompat.Builder mBuilder =
                 (NotificationCompat.Builder) new NotificationCompat.Builder(this)
@@ -140,6 +142,8 @@ public class ModifyFeed extends AppCompatActivity {
         // Builds the notification and issues it.
         mNotifyMgr.notify(mNotificationId, mBuilder.build());
     }
+
+    //push notification for then a camera is synced
     public void NotificationAddedView() {
         NotificationCompat.Builder mBuilder =
                 (NotificationCompat.Builder) new NotificationCompat.Builder(this)

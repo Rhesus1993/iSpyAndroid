@@ -29,13 +29,17 @@ public class Feeds extends AppCompatActivity {
         final TextView textView = (TextView) findViewById(R.id.textView2);
         final Button download = (Button)findViewById(R.id.button2);
         final File file;
+
+        //gets the current view information from the Modify feed activity
         Intent intent = getIntent();
         String str = intent.getStringExtra("location");
         textView.setText(str);
 
         String temp = str.toString().toLowerCase();
 
+        //checks to see what camera was synced
         if(temp.equals("dining room")){
+            //sets the video feed for the camera
             video="https://www.cefns.nau.edu/~rs854/videos/DiningRoom.mp4";
         }
         if(temp.equals("kitchen")){
@@ -58,6 +62,8 @@ public class Feeds extends AppCompatActivity {
         file = new File(video);
 
         System.out.println(uri);
+
+        //sets up the media controler for the video feed
         MediaController mediaController = new MediaController(this);
         mediaController.setAnchorView(videoView);
         videoView.setMediaController(mediaController);
@@ -66,6 +72,7 @@ public class Feeds extends AppCompatActivity {
 
         videoView.start();
 
+        //downloads the vide
         download.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
