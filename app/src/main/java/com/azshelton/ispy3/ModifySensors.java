@@ -66,7 +66,7 @@ public class ModifySensors extends AppCompatActivity {
         videoLocation.add(current);
         System.out.println(videoLocation);
 
-        int Tmin = 300000;
+        int Tmin = 30000;
         int Tmax = 3000000;
         Random rand = new Random();
         int randomtime = rand.nextInt((Tmax - Tmin) + 1) + Tmin;
