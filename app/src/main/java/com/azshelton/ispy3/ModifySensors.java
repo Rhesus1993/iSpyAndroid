@@ -84,7 +84,7 @@ public class ModifySensors extends AppCompatActivity {
                 NotificationMotion();
             }
         }.start();
-.
+
         //creates buttons from array
         for (int i = 0; i < videoLocation.size(); i++){
             count++;
