@@ -81,16 +81,7 @@ public class MainActivity extends AppCompatActivity {
 
         }
     }
-    /*
-    public void onClickNotify(View v)
-    {
-        notify_on += 1;
-    }
-    public boolean notificationsOn()
-    {
-        return (notify_on % 2 == 1);
-    }
-    */
+
     public void onClickNotification(View v){
         if(notification.isChecked()){
             addNotification();
@@ -101,6 +92,11 @@ public class MainActivity extends AppCompatActivity {
             MainActivity.notify_on = 0;
             System.out.println(notify_on);
         }
+    }
+
+    public void onClickLogout(View v){
+        Intent myIntent = new Intent(MainActivity.this, LoginActivity.class);
+        startActivity(myIntent);
     }
 
 
