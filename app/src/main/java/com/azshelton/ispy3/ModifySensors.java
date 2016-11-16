@@ -21,7 +21,7 @@ public class ModifySensors extends AppCompatActivity {
     public static int notify_on;
     private Spinner location;
     private int count;
-    private String [] items = new String[]{"Master Window", "Kids Room", "Ofice", "Front Door", "Back Door", "Garage"};
+    private String [] items = new String[]{"Master Window", "Kids Room", "Office", "Front Door", "Back Door", "Garage"};
     private RadioGroup radio;
     ArrayList<String> videoLocation;
     String current;
